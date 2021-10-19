@@ -1,12 +1,13 @@
 [Unit]
-Description=Puma service
-After=syslog.target network.target
+Description=Puma HTTP Server
+After=network.target
 
 [Service]
 Type=simple
+User=appuser
 WorkingDirectory=/home/appuser/reddit
-ExecStart=/usr/local/bin/puma
-User=root
+ExecStart=/bin/bash -lc 'puma'
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
